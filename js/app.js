@@ -17,13 +17,12 @@ require.config({
   }
 })
 
-require(['jquery', 'underscore', 'backbone', 'collections/contacts'],
-  function($, _, Backbone, conCollection) {
+require(['jquery', 'underscore', 'backbone', 'views/app'],
+  function($, _, Backbone, AppView) {
 
-    conCollection.fetch({reset: true, success: function() {
-
-
-    }})
+    var appView = new AppView();
+    console.log(appView)
+    $('#directoryapp').html( appView.render().el );
 
 
 })
