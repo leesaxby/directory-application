@@ -21,7 +21,6 @@ require(['jquery', 'underscore', 'backbone', 'views/app'],
   function($, _, Backbone, AppView) {
 
     var appView = new AppView();
-    console.log(appView)
     $('#directoryapp').html( appView.render().el );
 
 
