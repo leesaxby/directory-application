@@ -21,11 +21,7 @@ require(['jquery', 'underscore', 'backbone', 'collections/contacts'],
   function($, _, Backbone, conCollection) {
 
     conCollection.fetch({reset: true, success: function() {
-      var mod = conCollection.get({id: "1"});
 
-      console.log(mod.attributes.tel)
-      mod.destroy({id: "2"})
-      console.log(mod.attributes.tel)
 
     }})
 
