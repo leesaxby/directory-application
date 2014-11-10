@@ -5,6 +5,9 @@ define(['jquery', 'underscore', 'backbone', 'collections/contacts', 'views/conta
 
       template: _.template( appTemplate ),
 
+      events: {
+        'keyup #search': 'search'
+      },
       initialize: function() {
         conCollection.fetch({reset: true});
         this.listenTo(conCollection, 'reset', this.render);
@@ -29,6 +32,17 @@ define(['jquery', 'underscore', 'backbone', 'collections/contacts', 'views/conta
         }
         this.editView = new EditView({model: contact, parentView: this});
         this.$('#edit-container').html( this.editView.render().el );
+      },
+      search: function() {
+        if( this.$('#search').val() ) {
+          this.$('#contact-list').html('');
+          var conCollectionFilter = conCollection.searchFilter( this.$('#search').val() );
+        } else {
+          this.render();
+        }
+        for(var i=0; i < conCollectionFilter.length; i++) {
+          this.renderContact( conCollectionFilter[i] );
+        }
       }
 
     });
