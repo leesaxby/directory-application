@@ -37,12 +37,15 @@ define(['jquery', 'underscore', 'backbone', 'collections/contacts', 'views/conta
         if( this.$('#search').val() ) {
           this.$('#contact-list').html('');
           var conCollectionFilter = conCollection.searchFilter( this.$('#search').val() );
+          for(var i=0; i < conCollectionFilter.length; i++) {
+            this.renderContact( conCollectionFilter[i] );
+          }
         } else {
           this.render();
         }
-        for(var i=0; i < conCollectionFilter.length; i++) {
-          this.renderContact( conCollectionFilter[i] );
-        }
+
+       // console.log(conCollection.searchFilter( this.$('#search').val() ))
+
       }
 
     });
