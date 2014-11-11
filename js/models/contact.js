@@ -5,8 +5,11 @@ define(['backbone'], function(Backbone) {
       firstname: "",
       lastname: "",
       tel: "",
-      email: ""
-    }
+      email: "",
+      visible: true
+    },
+
+
   })
 
   return Contact;

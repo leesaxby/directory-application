@@ -12,7 +12,6 @@ define(['jquery', 'underscore', 'backbone', 'collections/contacts', 'views/conta
         conCollection.fetch({reset: true});
         this.listenTo(conCollection, 'reset', this.render);
         this.listenTo(conCollection, 'add', this.renderContact);
-
       },
       render: function() {
         this.$el.html( this.template() );
@@ -35,16 +34,8 @@ define(['jquery', 'underscore', 'backbone', 'collections/contacts', 'views/conta
       },
       search: function() {
         if( this.$('#search').val() ) {
-          this.$('#contact-list').html('');
-          var conCollectionFilter = conCollection.searchFilter( this.$('#search').val() );
-          for(var i=0; i < conCollectionFilter.length; i++) {
-            this.renderContact( conCollectionFilter[i] );
-          }
-        } else {
-          this.render();
+          conCollection.setVisible( this.$('#search').val() );
         }
-
-       // console.log(conCollection.searchFilter( this.$('#search').val() ))
 
       }
 

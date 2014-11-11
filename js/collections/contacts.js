@@ -5,21 +5,21 @@ define(['backbone', 'models/contact'],
       model: Contact,
       url: "api/contacts",
 
-      searchFilter: function(keyword) {
-        var contactArr = [],
-            fullname = "";
-
-        contactArr = this.filter(function(contact) {
+      setVisible: function(keyword) {
+        var fullname = "";
+        this.each(function(contact) {
           fullname = contact.get("firstname") + " " + contact.get("lastname");
-          if( fullname.search(keyword) > -1 ) {
-            return contact.get("firstname");
+          if(fullname.search(keyword) === -1) {
+            contact.set({visible: false});
+          } else {
+            contact.set({visible: true});
           }
         })
-        return contactArr;
       }
 
     })
 
     return new Contacts();
+    //return Contacts;
 
 })
