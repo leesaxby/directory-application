@@ -7,9 +7,7 @@ define(['backbone'], function(Backbone) {
       tel: "",
       email: "",
       visible: true
-    },
-
-
+    }
   })
 
   return Contact;

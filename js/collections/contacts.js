@@ -20,6 +20,5 @@ define(['backbone', 'models/contact'],
     })
 
     return new Contacts();
-    //return Contacts;
 
 })

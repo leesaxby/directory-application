@@ -26,17 +26,21 @@ define(['jquery', 'underscore', 'backbone', 'collections/contacts', 'views/conta
       },
       renderEdit: function(contact) {
         if(this.editView) {
-          this.editView.remove();
-          this.editView = null;
+          this.removeEditView();
         }
         this.editView = new EditView({model: contact, parentView: this});
         this.$('#edit-container').html( this.editView.render().el );
       },
       search: function() {
-        if( this.$('#search').val() ) {
-          conCollection.setVisible( this.$('#search').val() );
+        var keyword = this.$('#search').val();
+        if( keyword ) {
+          conCollection.setVisible( keyword );
         }
-
+      },
+      removeEditView: function() {
+        this.editView.remove();
+        this.editView.unbind();
+        this.editView = null;
       }
 
     });
