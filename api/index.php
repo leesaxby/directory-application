@@ -53,14 +53,14 @@ function addContact() {
 
 function updateContact($id) {
 
-  $request = Slim::getInstanct()->request();
+  $request = Slim::getInstance()->request();
   $body = $request->getBody();
-  $data = json_encode($body);
+  $data = json_decode($body);
 
   $db = getConn();
   $sql = "update directory.contacts set
           firstname = '". $data->firstname ."',
-          lastname = '". $data->lastname ."','
+          lastname = '". $data->lastname ."',
           tel = '". $data->tel ."',
           email = '". $data->email ."'
           where id = ". $data->id;
@@ -71,7 +71,7 @@ function updateContact($id) {
   }
 
   $db->close();
-
+  echo $sql;
 }
 
 function deleteContact($id) {

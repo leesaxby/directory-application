@@ -7,14 +7,16 @@ define(['underscore', 'backbone', 'text!templates/contact-template.html'],
       template: _.template( contactTemp ),
 
       events: {
-        'click .contact-div': 'setContact'
+        'click .edit': 'setContact',
       },
       initialize: function( opt ) {
         this.parentView = opt.parentView;
-        this.listenTo(this.model, 'change', this.visible)
+        this.listenTo(this.model, 'change', this.render)
+        this.listenTo(this.model, 'destroy', this.remove)
       },
       render: function() {
         this.$el.html( this.template( this.model.attributes ) )
+        this.visible();
         return this;
       },
       setContact: function() {
