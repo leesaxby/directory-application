@@ -15,6 +15,12 @@ define(['backbone', 'models/contact'],
             contact.set({visible: true});
           }
         })
+      },
+      setVisibleAll: function() {
+        this.each(function(contact) {
+          contact.set({visible: true});
+        })
+
       }
 
     })

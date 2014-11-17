@@ -7,6 +7,10 @@ define(['backbone'], function(Backbone) {
       tel: "",
       email: "",
       visible: true
+    },
+    stale: ['visible'],
+    toJSON: function() {
+      return _.omit(this.attributes, this.stale);
     }
   })
 

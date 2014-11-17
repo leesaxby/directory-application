@@ -28,13 +28,17 @@ define(['jquery', 'underscore', 'backbone', 'collections/contacts', 'views/conta
         if(this.editView) {
           this.removeEditView();
         }
+
         this.editView = new EditView({model: contact, parentView: this});
         this.$('#edit-container').html( this.editView.render().el );
+        this.$('#edit-container').css('display', 'block');
       },
       search: function() {
         var keyword = this.$('#search').val();
         if( keyword ) {
           conCollection.setVisible( keyword );
+        } else {
+          conCollection.setVisibleAll()
         }
       },
       removeEditView: function() {

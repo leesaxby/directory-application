@@ -3,6 +3,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/edit-template.html']
 
   var EditView = Backbone.View.extend({
 
+    className: 'edit-inner',
     template: _.template( editTemp ),
 
     events: {
