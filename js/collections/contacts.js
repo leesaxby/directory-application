@@ -6,9 +6,10 @@ define(['backbone', 'models/contact'],
       url: "api/contacts",
 
       setVisible: function(keyword) {
-        var fullname = "";
+        var fullname = "",
+            keyword = keyword.toLowerCase();
         this.each(function(contact) {
-          fullname = contact.get("firstname") + " " + contact.get("lastname");
+          fullname = contact.get("firstname").toLowerCase() + " " + contact.get("lastname").toLowerCase();
           if(fullname.search(keyword) === -1) {
             contact.set({visible: false});
           } else {

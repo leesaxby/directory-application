@@ -7,8 +7,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/edit-template.html']
     template: _.template( editTemp ),
 
     events: {
-      'click .save': 'saveContact',
-      'click .delete': 'deleteContact'
+      'click .save': 'saveContact'
     },
     render: function() {
       this.$el.html( this.template( this.model.attributes ) );
@@ -21,9 +20,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/edit-template.html']
       });
       this.model.save(formData)
     },
-    deleteContact: function() {
-      this.model.destroy();
-    }
+
 
   });
 

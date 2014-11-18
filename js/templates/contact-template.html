@@ -1,6 +1,11 @@
 <div class="contact-div">
-  <h3><%= firstname + " " + lastname %></h3>
-  <h4><%= tel %></h4>
-  <h4><%= email %></h4>
-  <button class="edit">EDIT</button>
+  <div class="contact-details">
+    <h3 class="name-card"><%= firstname + " " + lastname %></h3>
+    <h4 class="tel-card"><%= tel %></h4>
+    <h4 class="email-card"><%= email %></h4>
+  </div>
+  <div class="contact-buttons">
+    <button class="edit">EDIT</button>
+    <button class="delete">DELETE</button>
+  </div>
 </div>

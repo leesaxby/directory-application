@@ -8,6 +8,7 @@ define(['underscore', 'backbone', 'text!templates/contact-template.html'],
 
       events: {
         'click .edit': 'setContact',
+        'click .delete': 'deleteContact'
       },
       initialize: function( opt ) {
         this.parentView = opt.parentView;
@@ -24,41 +25,30 @@ define(['underscore', 'backbone', 'text!templates/contact-template.html'],
       },
       visible: function() {
         if(!this.model.attributes.visible) {
-          //this.$el.fadeOut();
-          //
           this.$el.animate({
-            height: '0px'
+            height: '0px',
+            marginBottom: '0px'
           }, {queue: false})
 
-          this.$('.contact-div').animate({
-            opacity: '0'
-          }, {queue: false})
-
-
+          this.$('.contact-div').css('opacity', '0')
         } else {
-          //this.$el.fadeIn();
-
           this.$el.animate({
-            height: '100px'
+            height: '100px',
+            marginBottom: '10px'
           }, {queue: false})
-
-          this.$('.contact-div').animate({
-            opacity: '1'
-          }, {queue: false})
-
-
+          this.$('.contact-div').css('opacity', '1')
         }
       },
+      deleteContact: function() {
+        this.model.destroy();
+      },
       removeView: function() {
-
-     //   this.$('.contact-div').css("margin", "0px");
-       this.$('.contact-div').animate({
-          left:'20px',
-          opacity:'0'
+        var self = this;
+        this.$('.contact-div').animate({
+            opacity:'0'
         }, function() {
-          this.remove();
+            self.remove();
         });
-
       }
 
     })
