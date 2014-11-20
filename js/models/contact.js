@@ -12,8 +12,8 @@ define(['backbone'], function(Backbone) {
     toJSON: function() {
       return _.omit(this.attributes, this.stale);
     }
-  })
+  });
 
   return Contact;
 
-})
+});

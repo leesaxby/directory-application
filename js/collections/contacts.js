@@ -5,9 +5,9 @@ define(['backbone', 'models/contact'],
       model: Contact,
       url: "api/contacts",
 
-      setVisible: function(keyword) {
+      setVisible: function(search) {
         var fullname = "",
-            keyword = keyword.toLowerCase();
+            keyword = search.toLowerCase();
         this.each(function(contact) {
           fullname = contact.get("firstname").toLowerCase() + " " + contact.get("lastname").toLowerCase();
           if(fullname.search(keyword) === -1) {
@@ -15,17 +15,15 @@ define(['backbone', 'models/contact'],
           } else {
             contact.set({visible: true});
           }
-        })
+        });
       },
       setVisibleAll: function() {
         this.each(function(contact) {
           contact.set({visible: true});
-        })
-
+        });
       }
-
-    })
+    });
 
     return new Contacts();
 
-})
+});

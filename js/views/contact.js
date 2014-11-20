@@ -12,11 +12,11 @@ define(['underscore', 'backbone', 'text!templates/contact-template.html'],
       },
       initialize: function( opt ) {
         this.parentView = opt.parentView;
-        this.listenTo(this.model, 'change', this.render)
-        this.listenTo(this.model, 'destroy', this.removeView)
+        this.listenTo(this.model, 'change', this.render);
+        this.listenTo(this.model, 'destroy', this.removeView);
       },
       render: function() {
-        this.$el.html( this.template( this.model.attributes ) )
+        this.$el.html( this.template( this.model.attributes ) );
         this.visible();
         return this;
       },
@@ -28,15 +28,15 @@ define(['underscore', 'backbone', 'text!templates/contact-template.html'],
           this.$el.animate({
             height: '0px',
             marginBottom: '0px'
-          }, {queue: false})
+          }, {queue: false});
 
-          this.$('.contact-div').css('opacity', '0')
+          this.$('.contact-div').css('opacity', '0');
         } else {
           this.$el.animate({
             height: '100px',
             marginBottom: '10px'
-          }, {queue: false})
-          this.$('.contact-div').css('opacity', '1')
+          }, {queue: false});
+          this.$('.contact-div').css('opacity', '1');
         }
       },
       deleteContact: function() {
@@ -51,8 +51,8 @@ define(['underscore', 'backbone', 'text!templates/contact-template.html'],
         });
       }
 
-    })
+    });
 
     return ContactView;
 
-})
+});

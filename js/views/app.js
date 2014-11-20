@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'backbone', 'collections/contacts', 'views/contact', 'text!templates/app-template.html', 'views/edit'],
-  function($, _, Backbone, conCollection, ContactView, appTemplate, EditView) {
+define(['jquery', 'underscore', 'backbone', 'collections/contacts', 'routers/appRouter', 'views/contact', 'views/edit', 'text!templates/app-template.html'],
+  function($, _, Backbone, conCollection, AppRouter, ContactView, EditView, appTemplate) {
 
     var AppView = Backbone.View.extend({
 
@@ -10,6 +10,10 @@ define(['jquery', 'underscore', 'backbone', 'collections/contacts', 'views/conta
       },
       initialize: function() {
         conCollection.fetch({reset: true});
+
+        var appRouter = new AppRouter({parentView: this});
+        Backbone.history.start();
+
         this.listenTo(conCollection, 'reset', this.render);
         this.listenTo(conCollection, 'add', this.renderContact);
       },
@@ -30,15 +34,16 @@ define(['jquery', 'underscore', 'backbone', 'collections/contacts', 'views/conta
         }
 
         this.editView = new EditView({model: contact, parentView: this});
-        this.$('#edit-container').html( this.editView.render().el );
-        this.$('#edit-container').css('display', 'block');
+        this.$el.append( this.editView.render().el );
       },
       search: function() {
         var keyword = this.$('#search').val();
         if( keyword ) {
+          window.location.hash = '#/search/' + keyword;
           conCollection.setVisible( keyword );
         } else {
-          conCollection.setVisibleAll()
+          window.location.hash = '';
+          conCollection.setVisibleAll();
         }
       },
       removeEditView: function() {

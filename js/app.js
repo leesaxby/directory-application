@@ -15,7 +15,7 @@ require.config({
       exports: 'Backbone'
     }
   }
-})
+});
 
 require(['jquery', 'underscore', 'backbone', 'views/app'],
   function($, _, Backbone, AppView) {
@@ -23,5 +23,4 @@ require(['jquery', 'underscore', 'backbone', 'views/app'],
     var appView = new AppView();
     $('#directoryapp').html( appView.render().el );
 
-
-})
+});
